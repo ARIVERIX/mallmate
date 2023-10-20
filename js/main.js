@@ -1,9 +1,14 @@
-$('.part').hover (
-	function() {
-		$('.description').html($(this).attr('description-data'));
-		$('.description').fadeIn();
-	},
-	function() {
-		$('.description').fadeOut(50);
-	}
-)
+let timeoutId;
+
+$('.part').hover(
+    function () {
+        timeoutId = setTimeout(function () {
+            $('.description').html($(this).attr('description-data'));
+            $('.description').fadeIn();
+        }.bind(this), 200);
+    },
+    function () {
+        clearTimeout(timeoutId);
+        $('.description').fadeOut(50);
+    }
+);
